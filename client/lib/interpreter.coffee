@@ -16,25 +16,39 @@ class @Interpreter
       unless @_instructionMapping[instruction]?
         @_instructionMapping[instruction] = defaultFunc
 
-  run: (code, binding = {}) ->
-    instructions = @compile(code, binding)
+    @_code_cache = {}
+
+  run: (code) ->
+    instructions = @compile(code)
     @exec(instructions)
 
-  exec: (instructions) ->
+  exec: (instructions, binding) ->
     stack = []
     system = new System()
 
     for instruction in instructions
-      instruction(stack, system)
+      instruction.apply(binding, [stack, system])
       break if system.hasExited()
 
     result = stack.pop()
     if result? then result else null
 
-  compile: (code, binding) ->
-    code.map (instruction) =>
-      @_parse(instruction).bind(binding)
+  compile: (code) ->
+    hash = @_hash(code)
 
+    compiled_code = @_code_cache[hash]
+
+    unless compiled_code?
+      compiled_code = code.map (instruction) =>
+        @_parse(instruction)
+
+      @_code_cache[hash] = compiled_code
+
+    compiled_code
+
+  _hash: (code) ->
+    join = (str, instruction) -> "#{str}|#{instruction}"
+    code.reduce(join, '')
 
   _parse: (instruction) ->
     ###

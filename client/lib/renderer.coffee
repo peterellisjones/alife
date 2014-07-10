@@ -32,5 +32,4 @@ class @Renderer
           image.data[i + 2] = b
           image.data[i + 3] = 255
 
-    #context.clearRect(0, 0, canvas.width, canvas.height);
     context.putImageData(image, 0, 0);

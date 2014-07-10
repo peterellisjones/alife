@@ -1,25 +1,26 @@
 class @CreatureSimulator
 
   constructor: (@_world, @_creatureList, @_instructionMapping = {}) ->
-
-  simulate: (recompile = false)->
     for instruction, defaultFunc of @_defaultInstructionMapping
       unless @_instructionMapping[instruction]?
         @_instructionMapping[instruction] = defaultFunc
 
-    interpreter = new Interpreter(@_instructionMapping)
+    @interpreter = new Interpreter(@_instructionMapping)
 
+  simulate: (recompile = false)->
+
+    binding =
+      world: @_world
+      creature: null
 
     @_creatureList.forEach (creature) =>
       return if @_remove_if_dead(creature)
 
       if !creature.compiled_code? or recompile
-        binding =
-          world: @_world
-          creature: creature
-        creature.compiled_code = interpreter.compile(creature.code, binding)
+        creature.compiled_code = @interpreter.compile(creature.code)
 
-      interpreter.exec(creature.compiled_code, binding)
+      binding.creature = creature
+      @interpreter.exec(creature.compiled_code, binding)
 
       @_ensure_creature_property_limits(creature)
 
