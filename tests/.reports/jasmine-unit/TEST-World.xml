@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-<testsuite name="World" errors="0" tests="3" failures="0" time="0.002" timestamp="2014-07-10T02:27:19">
+<testsuite name="World" errors="0" tests="3" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="World" name="has height" time="0"></testcase>
   <testcase classname="World" name="has width" time="0"></testcase>
-  <testcase classname="World" name="is empty" time="0.001"></testcase>
+  <testcase classname="World" name="is empty" time="0"></testcase>
 </testsuite>
-<testsuite name="World.#add" errors="0" tests="2" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="World.#add" errors="0" tests="2" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="World.#add" name="puts the creature in the world" time="0"></testcase>
   <testcase classname="World.#add" name="gives the creature coordinates" time="0"></testcase>
 </testsuite>
-<testsuite name="World.#remove" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="World.#remove" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="World.#remove" name="removes the creature from the world" time="0"></testcase>
 </testsuite>
-<testsuite name="World.#forEach" errors="0" tests="1" failures="0" time="0.001" timestamp="2014-07-10T02:27:19">
-  <testcase classname="World.#forEach" name="iterates over each cell" time="0.001"></testcase>
+<testsuite name="World.#forEach" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
+  <testcase classname="World.#forEach" name="iterates over each cell" time="0"></testcase>
 </testsuite>
-<testsuite name="World.#moveCreature" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="World.#moveCreature" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="World.#moveCreature" name="moves the creature" time="0"></testcase>
 </testsuite>
 </testsuites>

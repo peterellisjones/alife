@@ -21,6 +21,8 @@ class @CreatureSimulator
 
       interpreter.exec(creature.compiled_code, binding)
 
+      @_ensure_creature_property_limits(creature)
+
       return if @_remove_if_dead(creature)
 
       creature.age += 1
@@ -33,9 +35,16 @@ class @CreatureSimulator
     else
       false
 
+  _ensure_creature_property_limits: (creature) ->
+    console.log "****"
+    creature.energy = Math.min(255, creature.energy)
+    console.log creature
+
   _defaultInstructionMapping:
     ponder: (stack, system) ->
-      this.creature.energy -= Math.floor(10 * Math.random())
+      this.creature.energy += 1
+
+      return system.exit() # can only ponder once
 
     move: (stack, system) ->
       direction = stack.pop()

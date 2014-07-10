@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-<testsuite name="creature_list" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="creature_list" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T14:11:28">
 </testsuite>
-<testsuite name="creature_list.#length" errors="0" tests="1" failures="0" time="0.008" timestamp="2014-07-10T02:27:19">
-  <testcase classname="creature_list.#length" name="is correct" time="0.007"></testcase>
+<testsuite name="creature_list.#length" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
+  <testcase classname="creature_list.#length" name="is correct" time="0"></testcase>
 </testsuite>
-<testsuite name="creature_list.#add" errors="0" tests="1" failures="0" time="0.001" timestamp="2014-07-10T02:27:19">
-  <testcase classname="creature_list.#add" name="assigns the creature a unique id" time="0.001"></testcase>
+<testsuite name="creature_list.#add" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
+  <testcase classname="creature_list.#add" name="assigns the creature a unique id" time="0"></testcase>
 </testsuite>
-<testsuite name="creature_list.#remove" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="creature_list.#remove" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="creature_list.#remove" name="removes the creature" time="0"></testcase>
 </testsuite>
-<testsuite name="creature_list.#forEach" errors="0" tests="1" failures="0" time="0.001" timestamp="2014-07-10T02:27:19">
-  <testcase classname="creature_list.#forEach" name="iterates over each creature" time="0.001"></testcase>
+<testsuite name="creature_list.#forEach" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
+  <testcase classname="creature_list.#forEach" name="iterates over each creature" time="0"></testcase>
 </testsuite>
 </testsuites>

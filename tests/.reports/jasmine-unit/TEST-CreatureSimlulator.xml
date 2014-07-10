@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-<testsuite name="CreatureSimlulator" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="CreatureSimlulator" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T14:11:28">
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate" errors="0" tests="2" failures="0" time="0.006" timestamp="2014-07-10T02:27:19">
-  <testcase classname="CreatureSimlulator.#simulate" name="executes the code of each creature" time="0.002"></testcase>
+<testsuite name="CreatureSimlulator.#simulate" errors="0" tests="3" failures="0" time="0.008" timestamp="2014-07-10T14:11:28">
+  <testcase classname="CreatureSimlulator.#simulate" name="executes the code of each creature" time="0.003"></testcase>
   <testcase classname="CreatureSimlulator.#simulate" name="increments the age of each creature" time="0.001"></testcase>
+  <testcase classname="CreatureSimlulator.#simulate" name="clips the energy of the creature" time="0.001"></testcase>
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate.when the creature has no energy" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T02:27:19">
-  <testcase classname="CreatureSimlulator.#simulate.when the creature has no energy" name="removes the creature" time="0"></testcase>
+<testsuite name="CreatureSimlulator.#simulate.when the creature has no energy" errors="0" tests="1" failures="0" time="0.002" timestamp="2014-07-10T14:11:28">
+  <testcase classname="CreatureSimlulator.#simulate.when the creature has no energy" name="removes the creature" time="0.002"></testcase>
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate.instruction mapping" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="CreatureSimlulator.#simulate.instruction mapping" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T14:11:28">
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move" errors="0" tests="0" failures="0" time="0" timestamp="2014-07-10T14:11:28">
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack is empty" errors="0" tests="1" failures="0" time="0.001" timestamp="2014-07-10T02:27:19">
+<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack is empty" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack is empty" name="moves in a random direction" time="0"></testcase>
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack has a value" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T02:27:19">
-  <testcase classname="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack has a value" name="moves in that direction" time="0"></testcase>
+<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack has a value" errors="0" tests="1" failures="0" time="0.001" timestamp="2014-07-10T14:11:28">
+  <testcase classname="CreatureSimlulator.#simulate.instruction mapping.#move.when the stack has a value" name="moves in that direction" time="0.001"></testcase>
 </testsuite>
-<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move.when a creature is in the way" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T02:27:19">
+<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#move.when a creature is in the way" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
   <testcase classname="CreatureSimlulator.#simulate.instruction mapping.#move.when a creature is in the way" name="exits" time="0"></testcase>
+</testsuite>
+<testsuite name="CreatureSimlulator.#simulate.instruction mapping.#ponder" errors="0" tests="1" failures="0" time="0" timestamp="2014-07-10T14:11:28">
+  <testcase classname="CreatureSimlulator.#simulate.instruction mapping.#ponder" name="gives the creature 1 energy" time="0"></testcase>
 </testsuite>
 </testsuites>

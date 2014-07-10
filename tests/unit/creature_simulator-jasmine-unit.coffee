@@ -50,6 +50,16 @@ describe 'CreatureSimlulator', ->
         simulator.simulate()
         expect(creatureList.length()).toBe(0)
 
+    it 'clips the energy of the creature', ->
+      creatureList.forEach (creature) ->
+        creature.energy = 255
+        creature.code = ['ponder']
+
+      simulator.simulate()
+      expect(creatureList.length()).toBe(5)
+      creatureList.forEach (creature) ->
+        expect(creature.energy).toBe(255)
+
     describe 'instruction mapping', ->
       creature = null
       world = null
@@ -58,7 +68,9 @@ describe 'CreatureSimlulator', ->
       beforeEach ->
         world = new World(10, 10)
         creatureList = new CreatureList()
-        creature = new Creature
+        creature = new Creature()
+        creature.code = ['ponder']
+        creature.energy = 10
         creatureList.add(creature)
         world.add(creature, 5, 5)
         simulator = new CreatureSimulator(world, creatureList)
@@ -91,3 +103,11 @@ describe 'CreatureSimlulator', ->
             simulator.simulate()
             expect(creature.x).toBe(5)
             expect(creature.y).toBe(5)
+
+      describe '#ponder', ->
+        it 'gives the creature 1 energy', ->
+          energy = creature.energy
+          creature.code = ['ponder']
+          simulator.simulate()
+          expect(creature.energy).toBe(energy + 1)
+
