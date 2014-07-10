@@ -21,7 +21,7 @@ class @Controller
   run: ->
     throw "Cannot run unless stopped" if @status() != 'stopped'
     tick = @_tick.bind(@)
-    @_mrtIntervalId = Meteor.setInterval(tick, 100)
+    @_mrtIntervalId = Meteor.setInterval(tick, 50)
     Session.set('simulationStatus', 'running')
 
   stop: ->
@@ -30,18 +30,18 @@ class @Controller
     Session.set('simulationStatus', 'stopped')
 
   _reset: ->
-    @_world = new World(64, 64)
+    @_world = new World(128, 128)
     @_creatureList = new CreatureList()
     @_renderer = new Renderer(@_world, @_creatureList)
     @_simulator = new CreatureSimulator(@_world, @_creatureList)
 
-    for i in [0...@_world.width()/4]
-      for j in [0...@_world.height()/4]
+    for i in [0...@_world.width()/3]
+      for j in [0...@_world.height()/3]
         x = Math.floor(Math.random() * @_world.width())
         y = Math.floor(Math.random() * @_world.height())
         if @_world.at(x, y) == null
           creature = new Creature()
-          if Math.random() > 0.5
+          if Math.random() > 0.8
             creature.code = [Math.floor(Math.random() * 255), 'move']
           else
             creature.code = ['move']
