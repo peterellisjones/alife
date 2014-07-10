@@ -1,0 +1,9 @@
+{
+  "packages": {
+    "bootstrap-3": {},
+    "velocity-quick-start": {},
+    "mocha-web-velocity": {},
+    "jasmine-unit": {},
+    "velocity-html-reporter": {}
+  }
+}
