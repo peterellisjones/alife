@@ -20,3 +20,6 @@ Template.controls.events
   'click .regenerate-btn': ->
     console.log "Pressed regenerate"
     controller.reset()
+
+Meteor.startup ->
+  controller.render()

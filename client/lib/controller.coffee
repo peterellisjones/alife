@@ -14,6 +14,9 @@ class @Controller
     @_simulator.simulate()
     @_renderer.render()
 
+  render: ->
+    @_renderer.render()
+
   reset: ->
     @_reset()
     @_renderer.render()
@@ -41,7 +44,7 @@ class @Controller
         y = Math.floor(Math.random() * @_world.height())
         if @_world.at(x, y) == null
           creature = new Creature()
-          if Math.random() > 0.8
+          if Math.random() > 0.6
             creature.code = [Math.floor(Math.random() * 255), 'move']
           else
             creature.code = ['move']
