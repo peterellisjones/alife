@@ -16,3 +16,7 @@ Template.controls.events
   'click .step-forward-btn': ->
     console.log "Pressed step foward"
     controller.tick()
+
+  'click .regenerate-btn': ->
+    console.log "Pressed regenerate"
+    controller.reset()

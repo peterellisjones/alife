@@ -14,6 +14,10 @@ class @Controller
     @_simulator.simulate()
     @_renderer.render()
 
+  reset: ->
+    @_reset()
+    @_renderer.render()
+
   run: ->
     throw "Cannot run unless stopped" if @status() != 'stopped'
     tick = @_tick.bind(@)

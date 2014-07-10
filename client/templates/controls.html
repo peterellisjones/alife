@@ -2,18 +2,21 @@
   <div id="controls">
     {{#if running}}
     <button type="button" class="stop-btn btn btn-default btn-lg">
-      <span class="stop glyphicon glyphicon-stop"></span>
+      <span class="glyphicon glyphicon-stop"></span>
     </button>
     <button type="button" class="disabled step-forward-btn btn btn-default btn-lg">
-      <span class="step-forward glyphicon glyphicon-step-forward"></span>
+      <span class="glyphicon glyphicon-step-forward"></span>
     </button>
     {{else}}
     <button type="button" class="play-btn btn btn-default btn-lg">
-      <span class="play glyphicon glyphicon-play"></span>
+      <span class="glyphicon glyphicon-play"></span>
     </button>
     <button type="button" class="step-forward-btn btn btn-default btn-lg">
-      <span class="step-forward glyphicon glyphicon-step-forward"></span>
+      <span class="glyphicon glyphicon-step-forward"></span>
     </button>
     {{/if}}
+    <button type="button" class="regenerate-btn btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-refresh"></span>
+    </button>
   </div>
 </template>
