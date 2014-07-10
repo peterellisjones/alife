@@ -44,7 +44,7 @@ class @Interpreter
     if 'string' == typeof instruction and @_instructionMapping[instruction]?
       @_instructionMapping[instruction]
     else if 'number' == typeof instruction
-      number = clamp(instruction)
+      number = Math.clip(instruction, 0, 255)
       (stack, system) =>
         stack.push(number)
     else
@@ -59,17 +59,10 @@ class @Interpreter
       y = stack.pop()
       return system.exit() unless x? and y?
 
-      stack.push clamp(x + y)
+      stack.push Math.clip(x + y, 0, 255)
 
     invert: (stack, system) ->
       x = stack.pop()
       return system.exit() unless x?
 
       stack.push (x + 128) % 256
-
-clamp = (number) ->
-  if number < 0
-    number = 0
-  else if number > 255
-    number = 255
-  number

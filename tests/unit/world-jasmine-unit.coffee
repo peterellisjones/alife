@@ -49,3 +49,12 @@ describe "World", ->
 
       expect(emptyCount).toBe(20 * 10 - 1)
       expect(creatureCount).toBe(1)
+
+  describe "#moveCreature", ->
+    it 'moves the creature', ->
+      creature = new Creature()
+      world.add(creature, 4, 5)
+      world.moveCreature(creature, 7, 9)
+
+      expect(creature.x).toBe(7)
+      expect(creature.y).toBe(9)

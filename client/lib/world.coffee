@@ -29,6 +29,11 @@ class @World
     @_world[y][x] = null
     @_num_creatures -= 1
 
+  moveCreature: (creature, x, y) ->
+    throw "Cannot move over another creature" if @at(x, y) != null
+    @remove(creature)
+    @add(creature, x, y)
+
   forEach: (func) ->
     for y in [0...@_height]
       for x in [0...@_width]
@@ -45,6 +50,11 @@ class @World
 
   width: ->
     @_width
+
+  modCoords: (x, y) ->
+    x = (x + @_width) % @_width
+    y = (y + @_height) % @_height
+    [x, y]
 
 randomCoords = (x, y) ->
   rx = Math.floor(x * Math.random())

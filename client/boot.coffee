@@ -4,13 +4,13 @@ Meteor.startup ->
   window.renderer = new Renderer(world)
   window.simulator = new CreatureSimulator(world, creatureList)
 
-  for i in [0...world.width()/2]
-    for j in [0...world.height()/2]
+  for i in [0...world.width()/4]
+    for j in [0...world.height()/4]
       x = Math.floor(Math.random() * world.width())
       y = Math.floor(Math.random() * world.height())
       if world.at(x, y) == null
         creature = new Creature()
-        creature.code = ['ponder']
+        creature.code = ['move']
         world.add(creature, x, y)
         creatureList.add(creature)
 
@@ -20,4 +20,5 @@ Meteor.startup ->
     simulator.simulate()
     renderer.render()
 
-  Meteor.setInterval(tick, 1000)
+  Meteor.setInterval(tick, 200)
+  #tick()

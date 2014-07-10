@@ -9,15 +9,17 @@ class @CreatureSimulator
 
     interpreter = new Interpreter(@_instructionMapping)
 
-    binding = {
-      world: @_world
-    }
 
     @_creatureList.forEach (creature) =>
       return if @_remove_if_dead(creature)
 
-      binding.creature = creature
-      interpreter.run(creature.code, binding)
+      unless creature.compiled_code?
+        binding =
+          world: @_world
+          creature: creature
+        creature.compiled_code = interpreter.compile(creature.code, binding)
+
+      interpreter.exec(creature.compiled_code, binding)
 
       return if @_remove_if_dead(creature)
 
@@ -34,3 +36,20 @@ class @CreatureSimulator
   _defaultInstructionMapping:
     ponder: (stack, system) ->
       this.creature.energy -= Math.floor(10 * Math.random())
+
+    move: (stack, system) ->
+      direction = stack.pop()
+      unless direction?
+        direction = Math.floor(Math.random() * 256)
+
+      directionMapping = [[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]]
+
+      direction = Math.floor(direction / 32)
+      direction = Math.clip(direction, 0, 7)
+
+      [dx, dy] = directionMapping[direction]
+      [x, y] = this.world.modCoords(this.creature.x + dx, this.creature.y + dy)
+
+      return system.exit() if this.world.at(x, y) != null
+
+      this.world.moveCreature(this.creature, x, y)
