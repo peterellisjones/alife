@@ -2,7 +2,7 @@ class @CreatureSimulator
 
   constructor: (@_world, @_creatureList, @_instructionMapping = {}) ->
 
-  simulate: ->
+  simulate: (recompile = false)->
     for instruction, defaultFunc of @_defaultInstructionMapping
       unless @_instructionMapping[instruction]?
         @_instructionMapping[instruction] = defaultFunc
@@ -13,7 +13,7 @@ class @CreatureSimulator
     @_creatureList.forEach (creature) =>
       return if @_remove_if_dead(creature)
 
-      unless creature.compiled_code?
+      if !creature.compiled_code? or recompile
         binding =
           world: @_world
           creature: creature
@@ -53,3 +53,5 @@ class @CreatureSimulator
       return system.exit() if this.world.at(x, y) != null
 
       this.world.moveCreature(this.creature, x, y)
+
+      return system.exit() # can only move once

@@ -1,6 +1,6 @@
 class @Renderer
 
-  constructor: (@_world) ->
+  constructor: (@_world, @_creatureList) ->
 
   render: ->
     canvas = document.getElementById('canvas')
@@ -16,7 +16,10 @@ class @Renderer
     cellPixelsW = Math.floor canvas.width * 1.0 / @_world.width()
     cellPixelsH = Math.floor canvas.height * 1.0 / @_world.height()
 
-    @_world.forEach (creature, x, y) ->
+    @_creatureList.forEach (creature) ->
+
+      x = creature.x
+      y = creature.y
 
       if creature?
         [r, g, b] = creature.color()

@@ -63,7 +63,7 @@ describe 'CreatureSimlulator', ->
         world.add(creature, 5, 5)
         simulator = new CreatureSimulator(world, creatureList)
 
-      describe 'move', ->
+      describe '#move', ->
         describe 'when the stack is empty', ->
           it 'moves in a random direction', ->
             creature.code = ['move']
@@ -78,7 +78,7 @@ describe 'CreatureSimlulator', ->
             expect(creature.y).toBe(4)
 
             creature.code = [128, 'move']
-            simulator.simulate()
+            simulator.simulate(true)
             expect(creature.x).toBe(5)
             expect(creature.y).toBe(5)
 
