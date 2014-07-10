@@ -36,9 +36,7 @@ class @CreatureSimulator
       false
 
   _ensure_creature_property_limits: (creature) ->
-    console.log "****"
     creature.energy = Math.min(255, creature.energy)
-    console.log creature
 
   _defaultInstructionMapping:
     ponder: (stack, system) ->
@@ -61,6 +59,6 @@ class @CreatureSimulator
 
       return system.exit() if this.world.at(x, y) != null
 
-      this.world.moveCreature(this.creature, x, y)
-
-      return system.exit() # can only move once
+      if this.world.at(x, y) == null
+        this.world.moveCreature(this.creature, x, y)
+        return system.exit() # can only move once
