@@ -60,6 +60,5 @@ class @CreatureSimulator
 
       return system.exit() if this.world.at(x, y) != null
 
-      if this.world.at(x, y) == null
-        this.world.moveCreature(this.creature, x, y)
-        return system.exit() # can only move once
+      this.world.moveCreature(this.creature, x, y)
+      return system.exit() # can only move once
