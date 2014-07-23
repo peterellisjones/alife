@@ -9,7 +9,8 @@ describe 'CreatureSimlulator', ->
       world = new World(10, 10)
       creatureList = new CreatureList()
 
-      creatures = [0...5].map () -> new Creature()
+      creatureFactory = new CreatureFactory()
+      creatures = [0...5].map () -> creatureFactory.build(code: [], color: [255, 0, 0])
 
       for creature in creatures
         creatureList.add(creature)
@@ -18,7 +19,6 @@ describe 'CreatureSimlulator', ->
       simulator = new CreatureSimulator(world, creatureList)
 
     it 'executes the code of each creature', ->
-
       testInstructionMapping =
         simulate: (stack, system) ->
           this.creature.simulated = true
@@ -75,6 +75,18 @@ describe 'CreatureSimlulator', ->
         world.add(creature, 5, 5)
         simulator = new CreatureSimulator(world, creatureList)
 
+      describe '#ponder', ->
+        it 'gives the creature 1 energy', ->
+          energy = creature.energy
+          creature.code = ['ponder']
+          simulator.simulate()
+          expect(creature.energy).toBe(energy + 1)
+
+        it 'exits', ->
+          creature.code = ['ponder', 'ponder']
+          simulator.simulate()
+          expect(creature.energy).toBe(11)
+
       describe '#move', ->
         describe 'when the stack is empty', ->
           it 'moves in a random direction', ->
@@ -95,19 +107,12 @@ describe 'CreatureSimlulator', ->
             expect(creature.y).toBe(5)
 
         describe 'when a creature is in the way', ->
-          it 'exits', ->
+          it 'does not exit', ->
             blockingCreature = new Creature()
             world.add(blockingCreature, 4, 4)
 
-            creature.code = [0, 'move']
+            creature.code = [0, 'move', 'ponder']
             simulator.simulate()
             expect(creature.x).toBe(5)
             expect(creature.y).toBe(5)
-
-      describe '#ponder', ->
-        it 'gives the creature 1 energy', ->
-          energy = creature.energy
-          creature.code = ['ponder']
-          simulator.simulate()
-          expect(creature.energy).toBe(energy + 1)
-
+            expect(creature.energy).toBe(11)

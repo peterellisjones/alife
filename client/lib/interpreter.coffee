@@ -18,11 +18,11 @@ class @Interpreter
 
     @_code_cache = {}
 
-  run: (code) ->
+  run: (code, binding = {}) ->
     instructions = @compile(code)
-    @exec(instructions)
+    @exec(instructions, binding)
 
-  exec: (instructions, binding) ->
+  exec: (instructions, binding = {}) ->
     stack = []
     system = new System()
 

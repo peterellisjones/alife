@@ -20,7 +20,7 @@ class @Renderer
       y = creature.y
 
       if creature?
-        [r, g, b] = creature.color()
+        [r, g, b] = creature.color
       else
         [r, g, b] = [255, 255, 255]
 

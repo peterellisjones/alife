@@ -58,7 +58,6 @@ class @CreatureSimulator
       [dx, dy] = directionMapping[direction]
       [x, y] = this.world.modCoords(this.creature.x + dx, this.creature.y + dy)
 
-      return system.exit() if this.world.at(x, y) != null
-
-      this.world.moveCreature(this.creature, x, y)
-      return system.exit() # can only move once
+      if this.world.at(x, y) == null
+        this.world.moveCreature(this.creature, x, y)
+        return system.exit() # can only move once

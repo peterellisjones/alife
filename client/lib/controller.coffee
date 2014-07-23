@@ -37,17 +37,25 @@ class @Controller
     @_creatureList = new CreatureList()
     @_renderer = new Renderer(@_world, @_creatureList)
     @_simulator = new CreatureSimulator(@_world, @_creatureList)
+    @_creatureFactory = new CreatureFactory()
 
     for i in [0...@_world.width()/3]
       for j in [0...@_world.height()/3]
         x = Math.floor(Math.random() * @_world.width())
         y = Math.floor(Math.random() * @_world.height())
         if @_world.at(x, y) == null
-          creature = new Creature()
-          if Math.random() > 0.6
-            creature.code = [Math.floor(Math.random() * 255), 'move']
+
+          r = Math.random()
+          code = []
+          if r < 0.3
+            code = [Math.floor(256 * Math.random()), 'move', 'move']
+          else if r < 0.6
+            code =  [Math.floor(256 * Math.random()), 'move', 'move']
+            #creature.setColor [255, 0, 0]
           else
-            creature.code = ['move']
-            creature.setColor [255, 0, 0]
+            code = ['ponder']
+            #creature.setColor [0, 128, 0]
+          creature = @_creatureFactory.build(code: code, color: [255, 0, 0])
+
           @_world.add(creature, x, y)
           @_creatureList.add(creature)

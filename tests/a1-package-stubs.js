@@ -1571,6 +1571,10 @@ window.$ === undefined && (window.$ = Zepto)
 
 
 $ = jQuery = Zepto;
+
+if ('undefined' !== typeof window) {
+  window.$ = window.jQuery = Zepto;
+}
 // underscore stub
 
 var context = (typeof global === 'undefined') ? window : global;
