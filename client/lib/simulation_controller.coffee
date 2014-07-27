@@ -13,6 +13,10 @@ class @SimulationController
   _tick: ->
     @_simulator.simulate()
     @_renderer.render()
+    creature = Session.get('selected_creature')
+    if creature
+      updated_creature = @_world.getById(creature.id)
+      Session.set('selected_creature', updated_creature)
 
   render: ->
     @_renderer.render()
@@ -37,20 +41,19 @@ class @SimulationController
 
   _reset: ->
     Session.set('selected_creature', null)
-    world = new World(64, 64)
-    @_world = world
+    @_world = new World(64, 64)
     @_renderer = new Renderer(@_world)
     @_simulator = new CreatureSimulator(@_world)
     @_creatureFactory = new CreatureFactory()
 
-    for i in [0...@_world.width()/5]
-      for j in [0...@_world.height()/5]
+    for i in [0...@_world.width()/3]
+      for j in [0...@_world.height()/3]
         x = Math.floor(Math.random() * @_world.width())
         y = Math.floor(Math.random() * @_world.height())
         if @_world.at(x, y) == null
 
           r = Math.random()
-          code = [Math.floor(256 * Math.random()), 'move', 'move']
+          code = ['move', 'ponder']
           # if r < 0.3
           #   code = [Math.floor(256 * Math.random()), 'move', 'move']
           # else if r < 0.6
