@@ -4,60 +4,58 @@ describe 'CreatureSimlulator', ->
     world = null
     creatureList = null
     simulator = null
+    creatureFactory = new CreatureFactory()
 
     beforeEach ->
       world = new World(10, 10)
-      creatureList = new CreatureList()
 
-      creatureFactory = new CreatureFactory()
       creatures = [0...5].map () -> creatureFactory.build(code: [], color: [255, 0, 0])
 
       for creature in creatures
-        creatureList.add(creature)
         world.addRandom(creature)
 
-      simulator = new CreatureSimulator(world, creatureList)
+      simulator = new CreatureSimulator(world)
 
     it 'executes the code of each creature', ->
       testInstructionMapping =
         simulate: (stack, system) ->
           this.creature.simulated = true
 
-      simulator = new CreatureSimulator(world, creatureList, testInstructionMapping)
+      simulator = new CreatureSimulator(world, testInstructionMapping)
 
-      creatureList.forEach (creature) ->
+      world.forEachCreature (creature) ->
         creature.code = ['simulate']
 
       simulator.simulate()
-      creatureList.forEach (creature) ->
+      world.forEachCreature (creature) ->
         expect(creature.simulated).toBe(true)
 
     it 'increments the age of each creature', ->
-      creatureList.forEach (creature) ->
+      world.forEachCreature (creature) ->
         expect(creature.age).toBe(0)
       simulator.simulate()
-      creatureList.forEach (creature) ->
+      world.forEachCreature (creature) ->
         expect(creature.age).toBe(1)
 
     describe 'when the creature has no energy', ->
       it 'removes the creature', ->
         simulator.simulate()
-        expect(creatureList.length()).toBe(5)
+        expect(world.numCreatures()).toBe(5)
 
-        creatureList.forEach (creature) ->
+        world.forEachCreature (creature) ->
           creature.energy = 0
 
         simulator.simulate()
-        expect(creatureList.length()).toBe(0)
+        expect(world.numCreatures()).toBe(0)
 
     it 'clips the energy of the creature', ->
-      creatureList.forEach (creature) ->
+      world.forEachCreature (creature) ->
         creature.energy = 255
         creature.code = ['ponder']
 
       simulator.simulate()
-      expect(creatureList.length()).toBe(5)
-      creatureList.forEach (creature) ->
+      expect(world.numCreatures()).toBe(5)
+      world.forEachCreature (creature) ->
         expect(creature.energy).toBe(255)
 
     describe 'instruction mapping', ->
@@ -67,13 +65,9 @@ describe 'CreatureSimlulator', ->
 
       beforeEach ->
         world = new World(10, 10)
-        creatureList = new CreatureList()
-        creature = new Creature()
-        creature.code = ['ponder']
-        creature.energy = 10
-        creatureList.add(creature)
+        creature = creatureFactory.build(code: ['ponder'], color: [0,0,0])
         world.add(creature, 5, 5)
-        simulator = new CreatureSimulator(world, creatureList)
+        simulator = new CreatureSimulator(world)
 
       describe '#ponder', ->
         it 'gives the creature 1 energy', ->
@@ -108,7 +102,7 @@ describe 'CreatureSimlulator', ->
 
         describe 'when a creature is in the way', ->
           it 'does not exit', ->
-            blockingCreature = new Creature()
+            blockingCreature = creatureFactory.build(code: [], color: [0,0,0])
             world.add(blockingCreature, 4, 4)
 
             creature.code = [0, 'move', 'ponder']

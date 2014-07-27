@@ -1,25 +1,22 @@
-@controller = new Controller()
-
 Template.controls.running = ->
-  controller.status() == 'running'
+  simulationController.status() == 'running'
 
 Template.controls.events
-
   'click .stop-btn': ->
     console.log 'Pressed stop'
-    controller.stop()
+    simulationController.stop()
 
   'click .play-btn': ->
     console.log "Pressed play"
-    controller.run()
+    simulationController.run()
 
   'click .step-forward-btn': ->
     console.log "Pressed step foward"
-    controller.tick()
+    simulationController.tick()
 
   'click .regenerate-btn': ->
     console.log "Pressed regenerate"
-    controller.reset()
+    simulationController.reset()
 
 Meteor.startup ->
-  controller.render()
+  simulationController.render()

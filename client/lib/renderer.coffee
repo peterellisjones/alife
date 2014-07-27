@@ -14,7 +14,7 @@ class @Renderer
     cellPixelsW = Math.floor canvas.width * 1.0 / @_world.width()
     cellPixelsH = Math.floor canvas.height * 1.0 / @_world.height()
 
-    @_creatureList.forEach (creature) =>
+    @_world.forEachCreature (creature) =>
 
       x = creature.x
       y = creature.y

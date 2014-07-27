@@ -1,0 +1,31 @@
+<template name="creature">
+  <h2>Creature</h2>
+  {{#if creature}}
+    {{#with creature}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td>{{id}}</td>
+          </tr>
+          <tr>
+            <td>Age</td>
+            <td>{{age}}</td>
+          </tr>
+          <tr>
+            <td>Energy</td>
+            <td>{{energy}}</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/with}}
+  {{else}}
+    <p>Please select a creature</p>
+  {{/if}}
+</template>

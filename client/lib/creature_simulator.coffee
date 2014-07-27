@@ -1,6 +1,6 @@
 class @CreatureSimulator
 
-  constructor: (@_world, @_creatureList, @_instructionMapping = {}) ->
+  constructor: (@_world, @_instructionMapping = {}) ->
     for instruction, defaultFunc of @_defaultInstructionMapping
       unless @_instructionMapping[instruction]?
         @_instructionMapping[instruction] = defaultFunc
@@ -13,8 +13,8 @@ class @CreatureSimulator
       world: @_world
       creature: null
 
-    @_creatureList.forEach (creature) =>
-      return if @_remove_if_dead(creature)
+    @_world.forEachCreature (creature) =>
+      return if @_removeIfDead(creature)
 
       if !creature.compiled_code? or recompile
         creature.compiled_code = @interpreter.compile(creature.code)
@@ -22,21 +22,20 @@ class @CreatureSimulator
       binding.creature = creature
       @interpreter.exec(creature.compiled_code, binding)
 
-      @_ensure_creature_property_limits(creature)
+      @_ensureCreaturePropertyLimits(creature)
 
-      return if @_remove_if_dead(creature)
+      return if @_removeIfDead(creature)
 
       creature.age += 1
 
-  _remove_if_dead: (creature) ->
+  _removeIfDead: (creature) ->
     if creature.energy <= 0
       @_world.remove(creature)
-      @_creatureList.remove(creature)
       true
     else
       false
 
-  _ensure_creature_property_limits: (creature) ->
+  _ensureCreaturePropertyLimits: (creature) ->
     creature.energy = Math.min(255, creature.energy)
 
   _defaultInstructionMapping:
