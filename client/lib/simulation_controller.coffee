@@ -53,7 +53,7 @@ class @SimulationController
         if @_world.at(x, y) == null
 
           r = Math.random()
-          code = ['move', 'ponder']
+          code = [Math.floor(256 * Math.random()), 'move', 'move', 'ponder']
           # if r < 0.3
           #   code = [Math.floor(256 * Math.random()), 'move', 'move']
           # else if r < 0.6

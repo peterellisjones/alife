@@ -20,7 +20,11 @@ class @Renderer
       y = creature.y
 
       if creature?
-        [r, g, b] = creature.color
+        selected_creature = Session.get('selected_creature')
+        if selected_creature and selected_creature.id == creature.id
+          [r, g, b] = [0, 0, 0]
+        else
+          [r, g, b] = creature.color
       else
         [r, g, b] = [255, 255, 255]
 

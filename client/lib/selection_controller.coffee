@@ -3,3 +3,4 @@ class @SelectionController
     creature = simulationController.world().atFloat(x, y)
     if creature
       Session.set('selected_creature', creature)
+    simulationController.render()

@@ -59,4 +59,5 @@ class @CreatureSimulator
 
       if this.world.at(x, y) == null
         this.world.moveCreature(this.creature, x, y)
+        #this.creature.energy -= 1
         return system.exit() # can only move once
